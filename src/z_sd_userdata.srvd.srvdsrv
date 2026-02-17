@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition'
+define service Z_SD_USERDATA {
+  expose Z_C_USERDATA as User;
+  expose z_c_userdept as userdept;
+}

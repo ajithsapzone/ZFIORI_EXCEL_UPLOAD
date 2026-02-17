@@ -1,0 +1,69 @@
+managed implementation in class zbp_i_userdata unique;
+strict ( 2 );
+
+define behavior for Z_I_USERDATA alias user
+persistent table zuserdata_db
+lock master
+authorization master ( instance )
+etag master Lastchangesat
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly : update ) EmpId, DepId;
+  field ( readonly ) Createdby, Lastchangesat;
+  field ( mandatory : create ) EmpId, DepId, DepDescription;
+
+  association _userdept { create ( features : instance ); }
+
+  action ( features : instance ) DownloadExcel result [1] $self;
+  action ( features : instance ) UploadExcelData result [1] $self;
+
+  determination FillFileStatus on modify { field EmpId, DepId; }
+
+  determination FillSelectedStatus on modify { field Attachment; }
+
+  side effects
+  {
+    field Attachment affects field FileStatus;
+    action uploadExcelData affects $self, field _userdept.*;
+  }
+  mapping for zuserdata_db
+    {
+      EmpId          = emp_id;
+      DepId          = dep_id;
+      DepDescription = dep_description;
+      Attachment     = attachment;
+      Mimetype       = mimetype;
+      Filename       = filename;
+      FileStatus     = file_status;
+      TemplateStatus = template_staus;
+      Createdby      = createdby;
+      Createdat      = createdat;
+      Lastchangesat  = lastchangesat;
+      Lastchangedby  = lastchangedby;
+    }
+}
+
+
+
+define behavior for Z_I_USERDEPT alias userdept
+persistent table zuserdep_db
+lock dependent by _user
+authorization dependent by _user
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) EmpId, DepId, SerialNo;
+  association _user;
+
+  mapping for zuserdep_db
+    {
+      DepId      = dep_id;
+      EmpId      = emp_id;
+      SerialNo   = serial_no;
+      ObjectType = object_type;
+      ObjectName = object_name;
+    }
+}
