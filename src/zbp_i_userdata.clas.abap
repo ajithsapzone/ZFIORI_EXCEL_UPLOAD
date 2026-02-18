@@ -5,6 +5,8 @@ TYPES: BEGIN OF gty_exl_file,
          dep_desc TYPE  string,
          obj_type TYPE  string,
          obj_name TYPE  string,
+         salary     TYPE string,
+         Joiningdate TYPE string,
          serial_no  TYPE string,
        END OF gty_exl_file.
 ENDCLASS.

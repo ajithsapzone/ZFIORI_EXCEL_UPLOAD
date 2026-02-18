@@ -88,7 +88,7 @@ annotate entity Z_C_USERDATA with
       lineItem:       [{ position: 10, importance: #HIGH, label: 'Emp Id' }],
       identification: [{ type: #FOR_ACTION, label: 'Upload Data', dataAction: 'UploadExcelData' },
                        { type: #FOR_ACTION, label: 'Download Excel', dataAction: 'DownloadExcel' },
-                        { position: 10, label: 'Emp Id' }],
+                        { position: 10, label: 'Employee Id' }],
                       
 //       identification: [ { position: 10, label: 'Emp Id' }],
       selectionField: [{ position: 10 }]

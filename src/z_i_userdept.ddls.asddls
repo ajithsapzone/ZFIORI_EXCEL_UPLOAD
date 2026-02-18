@@ -10,5 +10,7 @@ association to parent Z_I_USERDATA as _user on $projection.EmpId = _user.EmpId a
     key serial_no as SerialNo,
     object_type as ObjectType,
     object_name as ObjectName,
+    salary      as Salary,
+    joiningdate as JoiningDate,
    _user   
 }

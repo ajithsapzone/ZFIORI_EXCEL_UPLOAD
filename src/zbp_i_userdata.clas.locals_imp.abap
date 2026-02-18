@@ -42,7 +42,7 @@ CLASS lhc_user IMPLEMENTATION.
 
     DATA(lo_select_pattern) = xco_cp_xlsx_selection=>pattern_builder->simple_from_to(
                             )->from_column( xco_cp_xlsx=>coordinate->for_alphabetic_value( 'A' )
-                            )->to_column( xco_cp_xlsx=>coordinate->for_alphabetic_value( 'M' )
+                            )->to_column( xco_cp_xlsx=>coordinate->for_alphabetic_value( 'G' )
                             )->from_row( xco_cp_xlsx=>coordinate->for_numeric_value( 1 )
                             )->get_pattern(  ).
 
@@ -51,7 +51,9 @@ CLASS lhc_user IMPLEMENTATION.
                               dep_id   = 'Department Id'
                               dep_desc = 'Department Description'
                               obj_type = 'Object Type'
-                              obj_name = 'Object Name' ) ).
+                              obj_name = 'Object Name'
+                              salary   = 'Salary'
+                              joiningdate = 'Joining Date' ) ).
 
     lo_worksheet->select( lo_select_pattern
                          )->row_stream(
@@ -161,8 +163,9 @@ CLASS lhc_user IMPLEMENTATION.
     DATA(ls_excel) = VALUE #( lt_excel_temp[ 1 ] OPTIONAL ).
     IF ls_excel IS NOT INITIAL.
       DO lo_no_of_cols TIMES.
+        lv_index = sy-index.
         ASSIGN COMPONENT lv_index OF STRUCTURE ls_excel TO <lfs_col_header>.
-        IF <lfs_col_header> IS NOT ASSIGNED.
+        IF <lfs_col_header> IS NOT ASSIGNED OR <lfs_col_header> IS INITIAL.
           CONTINUE.
         ENDIF.
         DATA(lv_value) = to_upper( <lfs_col_header> ).
@@ -173,12 +176,16 @@ CLASS lhc_user IMPLEMENTATION.
           WHEN 2.
             lv_has_error = COND #( WHEN lv_value <> 'DEPARTMENT ID' THEN abap_true ELSE lv_has_error ).
           WHEN 3.
-            lv_has_error = COND #( WHEN lv_value <> 'DEPARTMEMT DESCRIPTION' THEN abap_true ELSE lv_has_error ).
+            lv_has_error = COND #( WHEN lv_value <> 'DEPARTMENT DESCRIPTION' THEN abap_true ELSE lv_has_error ).
           WHEN 4.
             lv_has_error = COND #( WHEN lv_value <> 'OBJECT TYPE' THEN abap_true ELSE lv_has_error ).
           WHEN 5.
             lv_has_error = COND #( WHEN lv_value <> 'OBJECT NAME' THEN abap_true ELSE lv_has_error ).
-          WHEN 9.
+          WHEN 6.
+            lv_has_error = COND #( WHEN lv_value <> 'SALARY' THEN abap_true ELSE lv_has_error ).
+          WHEN 7.
+            lv_has_error = COND #( WHEN lv_value <> 'JOINING DATE' THEN abap_true ELSE lv_has_error ).
+          WHEN OTHERS.
             lv_has_error = abap_true.
         ENDCASE.
 
@@ -202,7 +209,15 @@ CLASS lhc_user IMPLEMENTATION.
     DELETE lt_excel_temp INDEX 1.
     DELETE lt_excel_temp WHERE emp_id IS INITIAL AND dep_id IS INITIAL.
 
-    lt_excel_filter = VALUE #( ( emp_id = keys[ 1 ]-empId dep_id = keys[ 1 ]-DepId ) ).
+
+    DATA: lv_empid TYPE string.
+
+    lv_empid = replace(
+      val   = keys[ 1 ]-EmpId
+      regex = '^0+'
+      with  = '' ).
+
+    lt_excel_filter = VALUE #( ( emp_id = lv_empid dep_id = keys[ 1 ]-DepId ) ).
 
     lt_excel = FILTER #( lt_excel_temp IN lt_excel_filter WHERE emp_id = emp_id AND dep_id = dep_id ).
 
