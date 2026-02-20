@@ -1,0 +1,34 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "Fiori Elements App for User Data RAP",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "User Data"
+  },
+  "ui5AppDetails": {
+    "appId": "z_userdata_app"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_FA02C992AEF9F36FC4CC82F93DB47B6F32F5D0F5_TM",
+    "semanticObject": "ZUSERDATA",
+    "action": "display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_FA02C992AEF9F36FC4CC82F93DB47B6F32F5D0F5_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "User Data"
+      }
+    }
+  ]
+}

@@ -85,28 +85,28 @@ annotate entity Z_C_USERDATA with
      ========================= */
 
   @UI: {
-      lineItem:       [{ position: 10, importance: #HIGH, label: 'Emp Id' }],
+      lineItem:       [{ position: 10, importance: #HIGH, label: 'Tender Number' }],
       identification: [{ type: #FOR_ACTION, label: 'Upload Data', dataAction: 'UploadExcelData' },
                        { type: #FOR_ACTION, label: 'Download Excel', dataAction: 'DownloadExcel' },
-                        { position: 10, label: 'Employee Id' }],
+                        { position: 10, label: 'Tender Number' }],
                       
 //       identification: [ { position: 10, label: 'Emp Id' }],
       selectionField: [{ position: 10 }]
   }
-  @EndUserText.label: 'Employee Id'
+  @EndUserText.label: 'Tender Number'
   EmpId;
 
   @UI: {
-      lineItem:       [{ position: 20, importance: #HIGH, label: 'Department Id' }],
+      lineItem:       [{ position: 20, importance: #HIGH, label: 'Project' }],
       selectionField: [{ position: 20 }],
-      identification: [{ position: 20, label: 'Department Id' }]
+      identification: [{ position: 20, label: 'Project' }]
   }
-  @EndUserText.label: 'Department Id'
+  @EndUserText.label: 'Project'
   DepId;
 
   @UI: {
-      lineItem:       [{ position: 30, importance: #HIGH, label: 'Department Description' }],
-      identification: [{ position: 30, label: 'Department Description' }],
+      lineItem:       [{ position: 30, importance: #HIGH, label: 'Description' }],
+      identification: [{ position: 30, label: 'Description' }],
       dataPoint:      { qualifier: 'Description', title: 'Development Description' }
   }
   DepDescription;
@@ -116,9 +116,10 @@ annotate entity Z_C_USERDATA with
 
   @UI: {
       lineItem:  [{ position: 40, importance: #HIGH, label: 'Template Status', criticality: 'TemplateCrticality' }],
-      dataPoint: { qualifier: 'TemplateStatus', title: 'Template Status', criticality: 'TemplateCrticality'
-      }
+      dataPoint: { qualifier: 'TemplateStatus', title: 'Template Status', criticality: 'TemplateCrticality' },
+      selectionField: [{ position: 30 }]
   }
+  
   TemplateStatus;
 
   @UI: {
@@ -127,12 +128,13 @@ annotate entity Z_C_USERDATA with
   Filename;
 
   @UI: {
-      lineItem: [{
-          position: 50, importance: #HIGH, label: 'File Status', criticality: 'Criticality'
-      }],
-      dataPoint: {  qualifier: 'FileStatus', title: 'File Status', criticality: 'Criticality'
+      lineItem: [{ position: 50, importance: #HIGH, label: 'File Status', criticality: 'Criticality'}],
+         dataPoint: {  qualifier: 'FileStatus', title: 'File Status', criticality: 'Criticality'
+        
       }
   }
+        
+  
   FileStatus;
 
   @UI: {
