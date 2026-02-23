@@ -7,6 +7,8 @@
   description: { value: 'DepId' }
 }
 
+@Search.searchable: true
+
 annotate entity Z_C_USERDATA with
 {
 
@@ -94,6 +96,7 @@ annotate entity Z_C_USERDATA with
       selectionField: [{ position: 10 }]
   }
   @EndUserText.label: 'Tender Number'
+  @Search.defaultSearchElement: true
   EmpId;
 
   @UI: {
@@ -102,6 +105,8 @@ annotate entity Z_C_USERDATA with
       identification: [{ position: 20, label: 'Project' }]
   }
   @EndUserText.label: 'Project'
+  @Search.defaultSearchElement: true
+   
   DepId;
 
   @UI: {
@@ -119,6 +124,7 @@ annotate entity Z_C_USERDATA with
       dataPoint: { qualifier: 'TemplateStatus', title: 'Template Status', criticality: 'TemplateCrticality' },
       selectionField: [{ position: 30 }]
   }
+  @Search.defaultSearchElement: true
   
   TemplateStatus;
 

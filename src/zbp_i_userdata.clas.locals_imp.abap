@@ -69,7 +69,7 @@ CLASS lhc_user IMPLEMENTATION.
                         ( empid = ls_key-EmpId
                           DepId = ls_key-DepId
                           Attachment = lv_file_content
-                          Filename = 'template.xlsx'
+                          Filename = 'ReGroup.xlsx'
                           Mimetype = 'application/vnd.ms-excel'
                           %control-Attachment = if_abap_behv=>mk-on
                           %control-Filename   = if_abap_behv=>mk-on
@@ -194,7 +194,7 @@ CLASS lhc_user IMPLEMENTATION.
           APPEND VALUE #( %tky = lt_file_entity[ 1 ]-%tky
                           %msg = new_message_with_text(
                                      severity = if_abap_behv_message=>severity-error
-                                     text     = 'One or More Heading is incorrect, Please Check !!!' ) )
+                                     text     = 'One or More Heading is incorrect, Please Check!!!' ) )
                  TO reported-user.
           UNASSIGN <lfs_col_header>.
           EXIT.
