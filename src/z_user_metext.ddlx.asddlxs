@@ -86,14 +86,15 @@ annotate entity Z_C_USERDATA with
      FIELDS
      ========================= */
 
-  @UI: {
+  @UI: { 
+  
       lineItem:       [{ position: 10, importance: #HIGH, label: 'Tender Number' }],
       identification: [{ type: #FOR_ACTION, label: 'Upload Data', dataAction: 'UploadExcelData' },
                        { type: #FOR_ACTION, label: 'Download Excel', dataAction: 'DownloadExcel' },
-                        { position: 10, label: 'Tender Number' }],
-                      
+                        { position: 10, label: 'Tender Number' } ],
 //       identification: [ { position: 10, label: 'Emp Id' }],
       selectionField: [{ position: 10 }]
+   
   }
   @EndUserText.label: 'Tender Number'
   @Search.defaultSearchElement: true
@@ -120,7 +121,7 @@ annotate entity Z_C_USERDATA with
   Attachment;
 
   @UI: {
-      lineItem:  [{ position: 40, importance: #HIGH, label: 'Template Status', criticality: 'TemplateCrticality' }],
+//      lineItem:  [{ position: 40, importance: #HIGH, label: 'Template Status', criticality: 'TemplateCrticality' }],
       dataPoint: { qualifier: 'TemplateStatus', title: 'Template Status', criticality: 'TemplateCrticality' },
       selectionField: [{ position: 30 }]
   }
@@ -135,12 +136,9 @@ annotate entity Z_C_USERDATA with
 
   @UI: {
       lineItem: [{ position: 50, importance: #HIGH, label: 'File Status', criticality: 'Criticality'}],
-         dataPoint: {  qualifier: 'FileStatus', title: 'File Status', criticality: 'Criticality'
-        
-      }
+         dataPoint: {  qualifier: 'FileStatus', title: 'File Status', criticality: 'Criticality' }
   }
-        
-  
+
   FileStatus;
 
   @UI: {

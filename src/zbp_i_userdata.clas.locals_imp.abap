@@ -247,13 +247,17 @@ CLASS lhc_user IMPLEMENTATION.
                                                                      DepId      = keys[ 1 ]-DepId
                                                                      SerialNo   = lwa_excel-serial_no
                                                                      ObjectType = lwa_excel-obj_type
-                                                                     ObjectName = lwa_excel-obj_name    )
+                                                                     ObjectName = lwa_excel-obj_name
+                                                                     Salary     = lwa_excel-salary
+                                                                     JoiningDate = lwa_excel-joiningdate    )
 
                                                  %control = VALUE #( EmpId      = if_abap_behv=>mk-on
                                                                      DepId      = if_abap_behv=>mk-on
                                                                      SerialNo   = if_abap_behv=>mk-on
                                                                      ObjectType = if_abap_behv=>mk-on
-                                                                     ObjectName = if_abap_behv=>mk-on ) ) ) ) ).
+                                                                     ObjectName = if_abap_behv=>mk-on
+                                                                     Salary     = if_abap_behv=>mk-on
+                                                                     JoiningDate = if_abap_behv=>mk-on ) ) ) ) ).
 
       READ ENTITIES OF z_i_userdata
            IN LOCAL MODE

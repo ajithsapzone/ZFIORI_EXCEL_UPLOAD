@@ -5,9 +5,10 @@
 define view entity Z_I_USERDEPT as select from zuserdep_db
 association to parent Z_I_USERDATA as _user on $projection.EmpId = _user.EmpId and $projection.DepId = _user.DepId 
 {
+
+    key serial_no as SerialNo,
     key emp_id as EmpId,
     key dep_id as DepId,
-    key serial_no as SerialNo,
     object_type as ObjectType,
     object_name as ObjectName,
     salary      as Salary,

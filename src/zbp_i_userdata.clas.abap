@@ -9,8 +9,11 @@ CLASS zbp_i_userdata DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF z_i_userda
            Joiningdate TYPE  string,
            serial_no   TYPE  string,
          END OF gty_exl_file.
+protected section.
+private section.
 ENDCLASS.
 
 
-CLASS    zbp_i_userdata IMPLEMENTATION.
+
+CLASS ZBP_I_USERDATA IMPLEMENTATION.
 ENDCLASS.

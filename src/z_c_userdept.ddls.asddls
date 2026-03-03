@@ -1,17 +1,20 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Projection view of Z_I_USERDEPT'
 @Metadata.ignorePropagatedAnnotations: true
+@Search.searchable: true
 define view entity z_c_userdept
   as projection on Z_I_USERDEPT
 {
 
-      @UI: {lineItem:[{ position: 10, importance: #HIGH, label: 'Employee Id' }]}
-  key EmpId,
-      @UI: {lineItem:[{ position: 20, importance: #HIGH, label: 'Department Id' }]}
-  key DepId,
-      @UI: {lineItem:[{ position: 30, importance: #HIGH, label: 'Serial No' }]}
+      @UI: {lineItem:[{ position: 10, importance: #HIGH, label: 'Serial No' }]}
+      @Search.defaultSearchElement: true
   key SerialNo,
+      @UI: {lineItem:[{ position: 20, importance: #HIGH, label: 'Employee Id' }]}
+  key EmpId,
+      @UI: {lineItem:[{ position: 30, importance: #HIGH, label: 'Department Id' }]}
+  key DepId,
       @UI: {lineItem:[{ position: 40, importance: #HIGH, label: 'Object Type' }]}
+      @Search.defaultSearchElement: true
       ObjectType,
       @UI: {lineItem:[{ position: 50, importance: #HIGH, label: 'Object Name' }]}
       ObjectName,

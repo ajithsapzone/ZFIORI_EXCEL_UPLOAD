@@ -1,18 +1,28 @@
 managed implementation in class zbp_i_userdata unique;
 strict ( 2 );
+//with draft;
 
 define behavior for Z_I_USERDATA alias user
 persistent table zuserdata_db
+//draft table zuserdata_dt
 lock master
+//total etag Lastchangesat
 authorization master ( instance )
 etag master Lastchangesat
 {
   create ( authorization : global );
   update;
   delete;
+
+  field ( mandatory : create ) EmpId, DepId, DepDescription;
   field ( readonly : update ) EmpId, DepId;
   field ( readonly ) Createdby, Lastchangesat;
-  field ( mandatory : create ) EmpId, DepId, DepDescription;
+
+  //  draft action Edit;
+  //  draft action Resume;
+  //  draft action Discard;
+  //  draft action Activate optimized;
+  //  draft determine action Prepare;
 
   association _userdept { create ( features : instance ); }
 
@@ -25,9 +35,10 @@ etag master Lastchangesat
 
   side effects
   {
-    field Attachment affects field FileStatus;
-    action uploadExcelData affects $self, field _userdept.*;
+    field Attachment affects $self, field FileStatus, entity _userdept;
+    action uploadExcelData affects $self,  entity _userdept, messages;
   }
+
   mapping for zuserdata_db
     {
       EmpId          = emp_id;
@@ -45,12 +56,11 @@ etag master Lastchangesat
     }
 }
 
-
-
 define behavior for Z_I_USERDEPT alias userdept
 persistent table zuserdep_db
 lock dependent by _user
 authorization dependent by _user
+//draft table zuserdep_dt
 //etag master <field_name>
 {
   update;
@@ -60,12 +70,12 @@ authorization dependent by _user
 
   mapping for zuserdep_db
     {
-      DepId      = dep_id;
-      EmpId      = emp_id;
-      SerialNo   = serial_no;
-      ObjectType = object_type;
-      ObjectName = object_name;
-      Salary     = salary;
+      DepId       = dep_id;
+      EmpId       = emp_id;
+      SerialNo    = serial_no;
+      ObjectType  = object_type;
+      ObjectName  = object_name;
+      Salary      = salary;
       JoiningDate = joiningdate;
     }
 }

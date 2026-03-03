@@ -1,7 +1,7 @@
 {
   "formatVersion": "2",
   "header": {
-    "description": "Fiori Elements App for User Data RAP",
+    "description": "RAP Fiori App for User Data",
     "originalLanguage": "en",
     "abapLanguageVersion": "cloudDevelopment"
   },
@@ -11,7 +11,7 @@
     "targetMappingTitle": "User Data"
   },
   "ui5AppDetails": {
-    "appId": "z_userdata_app"
+    "appId": "zsb_userdata_ui"
   },
   "navigation": {
     "targetMappingId": "UI5R_FA02C992AEF9F36FC4CC82F93DB47B6F32F5D0F5_TM",
